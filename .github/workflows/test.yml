@@ -6,12 +6,11 @@ jobs:
   #  steps:
   #    - name: print some stuff
   #      run: printenv
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+  #checkout:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - uses: actions/checkout@v2
   my_container_job:
-    needs: [checkout]
     runs-on: ubuntu-latest
     container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
     steps:
@@ -19,17 +18,17 @@ jobs:
       - name: print it
         run: realpath .
       - name: print it
-        run: ls .
-      - name: do something to the file system
-        run: touch wakka123.txt && ls .
-  my_third_job:
-    needs: [my_container_job]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: print it
-        run: ls .
-      - name: set env
-        run: echo ::set-env name=action_state::yellow
-      - name: print some stuff 2
-        run: printenv
+        run: /tools/dotnet-gitversion
+      #- name: do something to the file system
+      #  run: touch wakka123.txt && ls .
+  #my_third_job:
+  #  needs: [my_container_job]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: print it
+  #      run: ls .
+  #    - name: set env
+  #      run: echo ::set-env name=action_state::yellow
+  #    - name: print some stuff 2
+  #      run: printenv
