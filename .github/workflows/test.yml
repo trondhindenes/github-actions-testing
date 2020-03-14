@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: print it
         run: realpath . && ls .
+      - name: install git
+        run: yum install git -y
       - name: print it
         run: /tools/dotnet-gitversion
       #- name: do something to the file system
