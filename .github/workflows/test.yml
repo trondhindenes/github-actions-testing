@@ -16,6 +16,10 @@ jobs:
     container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
     steps:
       - uses: actions/checkout@v2
+      - name: print it
+        run: realpath .
+      - name: print it
+        run: ls .
       - name: do something to the file system
         run: touch /github/workspace/wakka123.txt && ls /github/workspace
   my_third_job:
