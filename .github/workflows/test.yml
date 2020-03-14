@@ -14,8 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
     steps:
-      - name: install git
-        run: yum -y install  https://centos7.iuscommunity.org/ius-release.rpm && yum -y install  git2u-all
+      - name: install git from source
+        run: |
+          yum groupinstall "Development Tools" &&\
+          yum -y install wget perl-CPAN gettext-devel perl-devel  openssl-devel  zlib-devel &&\
+          export VER="2.22.0" &&\
+          cd /tmp &&\
+          wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
+          tar -xvf v${VER}.tar.gz &&\
+          rm -f v${VER}.tar.gz &&\
+          cd git-* &&\
+          make install
       - uses: actions/checkout@v2
       - name: git status
         run: git status
