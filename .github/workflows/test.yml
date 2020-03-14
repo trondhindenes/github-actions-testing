@@ -1,16 +1,29 @@
 name: test
 on: push
 jobs:
-  my_first_job:
+  #my_first_job:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: print some stuff
+  #      run: printenv
+  checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: print some stuff
-        run: printenv
+    - uses: actions/checkout@v2
+  my_container_job:
+    needs: [checkout]
+    runs-on: ubuntu-latest
+    container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
+    steps:
+      - uses: actions/checkout@v2
+      - name: do something to the file system
+        run: touch /github/workspace/wakka123.txt && ls /github/workspace
+  my_third_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print it
+        run: ls .
       - name: set env
         run: echo ::set-env name=action_state::yellow
       - name: print some stuff 2
         run: printenv
-      - name: run gitversion
-        uses: docker://gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
-        run: realpath . && ls /
-        shell: bash
