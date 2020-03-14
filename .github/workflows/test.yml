@@ -15,7 +15,7 @@ jobs:
     container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
     steps:
       - name: install git
-        run: yum install git -y
+        run: yum -y install  https://centos7.iuscommunity.org/ius-release.rpm && yum -y install  git2u-all
       - uses: actions/checkout@v2
       - name: git status
         run: git status
