@@ -19,6 +19,7 @@ jobs:
       - name: do something to the file system
         run: touch /github/workspace/wakka123.txt && ls /github/workspace
   my_third_job:
+    needs: [my_container_job]
     runs-on: ubuntu-latest
     steps:
       - name: print it
