@@ -17,7 +17,7 @@ jobs:
       - name: install git from source
         run: |
           yum groupinstall "Development Tools" &&\
-          yum -y install wget perl-CPAN gettext-devel perl-devel  openssl-devel  zlib-devel &&\
+          yum install wget perl-CPAN gettext-devel perl-devel  openssl-devel  zlib-devel -y &&\
           export VER="2.22.0" &&\
           cd /tmp &&\
           wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
