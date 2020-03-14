@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: print it
-        run: realpath .
+        run: realpath . && ls .
       - name: print it
         run: /tools/dotnet-gitversion
       #- name: do something to the file system
