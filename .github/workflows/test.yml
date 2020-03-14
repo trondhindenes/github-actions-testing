@@ -16,15 +16,15 @@ jobs:
     steps:
       - name: install git from source
         run: |
-          yum groupinstall "Development Tools" &&\
+          yum groupinstall "Development Tools" -y &&\
           yum install wget perl-CPAN gettext-devel perl-devel  openssl-devel  zlib-devel -y &&\
-          #export VER="2.22.0" &&\
-          #cd /tmp &&\
-          #wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
-          #tar -xvf v${VER}.tar.gz &&\
-          #rm -f v${VER}.tar.gz &&\
-          #cd git-* &&\
-          #make install
+          export VER="2.22.0" &&\
+          cd /tmp &&\
+          wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
+          tar -xvf v${VER}.tar.gz &&\
+          rm -f v${VER}.tar.gz &&\
+          cd git-* &&\
+          make install
       - uses: actions/checkout@v2
       - name: git status
         run: git status
