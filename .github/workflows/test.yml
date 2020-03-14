@@ -17,6 +17,8 @@ jobs:
       - name: install git
         run: yum install git -y
       - uses: actions/checkout@v2
+      - name: git status
+        run: git status
       - name: print it
         run: realpath . && ls .
       - name: print it
