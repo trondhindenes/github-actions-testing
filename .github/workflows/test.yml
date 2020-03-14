@@ -6,3 +6,11 @@ jobs:
     steps:
       - name: print some stuff
         run: printenv
+      - name: set env
+        run: echo ::set-env name=action_state::yellow
+      - name: print some stuff 2
+        run: printenv
+      - name: run gitversion
+        uses: docker://gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
+        run: realpath . && ls /
+        shell: bash
