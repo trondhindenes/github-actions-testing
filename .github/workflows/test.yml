@@ -10,30 +10,37 @@ jobs:
   #  runs-on: ubuntu-latest
   #  steps:
   #  - uses: actions/checkout@v2
-  my_container_job:
+  my_container_job_2:
     runs-on: ubuntu-latest
-    container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
+    container: trondhindenes/buildimagetest
     steps:
-      - name: install git from source
-        run: |
-          yum groupinstall "Development Tools" -y &&\
-          yum install wget perl-CPAN gettext-devel perl-devel  openssl-devel  zlib-devel -y &&\
-          export VER="2.22.0" &&\
-          cd /tmp &&\
-          wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
-          tar -xvf v${VER}.tar.gz &&\
-          rm -f v${VER}.tar.gz &&\
-          cd git-* &&\
-          make install
       - uses: actions/checkout@v2
-      - name: git status
-        run: git status
       - name: print it
-        run: realpath . && ls .
-      - name: print it
-        run: /tools/dotnet-gitversion
-      #- name: do something to the file system
-      #  run: touch wakka123.txt && ls .
+        run: dotnet-gitversion
+  #my_container_job:
+  #  runs-on: ubuntu-latest
+  #  container: gittools/gitversion:5.2.4-linux-centos-7-netcoreapp2.1
+  #  steps:
+  #    - name: install git from source
+  #      run: |
+  #        yum groupinstall "Development Tools" -y &&\
+  #        yum install wget perl-CPAN gettext-devel perl-devel openssl-devel libcurl-dev zlib-devel -y &&\
+  #        export VER="2.22.0" &&\
+  #        cd /tmp &&\
+  #        wget https://github.com/git/git/archive/v${VER}.tar.gz &&\
+  #        tar -xvf v${VER}.tar.gz &&\
+  #        rm -f v${VER}.tar.gz &&\
+  #        cd git-* &&\
+  #        make install
+  #    - uses: actions/checkout@v2
+  #    - name: git status
+  #      run: git status
+  #    - name: print it
+  #      run: realpath . && ls .
+  #    - name: print it
+  #      run: /tools/dotnet-gitversion
+  #    #- name: do something to the file system
+  #    #  run: touch wakka123.txt && ls .
   #my_third_job:
   #  needs: [my_container_job]
   #  runs-on: ubuntu-latest
